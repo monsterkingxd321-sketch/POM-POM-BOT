@@ -18,10 +18,10 @@ import uuid
 # Logging setup
 logging.basicConfig(level=logging.INFO)
 
-# Bot configuration (Using environment variables for Railway)
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8616457539:AAG2Fl11UO0ksRz5Kn3gC-MM8B66UqzFm7Y")
-LOG_GROUP_ID = os.getenv("LOG_GROUP_ID", "-1003711093763")
-ADMIN_ID = os.getenv("ADMIN_ID", "7461769509")
+# Bot configuration
+BOT_TOKEN = "8616457539:AAG2Fl11UO0ksRz5Kn3gC-MM8B66UqzFm7Y"
+LOG_GROUP_ID = "-1003711093763"
+ADMIN_ID = "7461769509"
 
 # Telegram API credentials
 API_ID = 30191201
@@ -99,9 +99,9 @@ def delete_old_videos():
     c.execute("DELETE FROM videos WHERE upload_time <= datetime('now', '-15 minutes')")
     
     # Delete files from disk
-    for file_path, in old_files:
+    for file_path in old_files:
         try:
-            os.remove(file_path)
+            os.remove(file_path[0])
         except FileNotFoundError:
             pass
     
@@ -560,3 +560,6 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+Mughe yehi code pasad hai 
